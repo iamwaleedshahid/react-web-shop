@@ -4,7 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { commerce } from '../../lib/commerce';
-import FormInput from './CustomTextField';
+import FormInput from './FormInput';
 
 const AddressForm = ({ checkoutToken, test }) => {
     const [shippingCountries, setShippingCountries] = useState([]);
@@ -38,7 +38,7 @@ const AddressForm = ({ checkoutToken, test }) => {
 
     useEffect(() => {
         fetchShippingCountries(checkoutToken.id);
-    }, []);
+    }, [checkoutToken.id]);
 
     useEffect(() => {
         if (shippingCountry) fetchSubdivisions(shippingCountry);
@@ -46,7 +46,7 @@ const AddressForm = ({ checkoutToken, test }) => {
 
     useEffect(() => {
         if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
-    }, [shippingSubdivision]);
+    }, [checkoutToken.id,shippingCountry,shippingSubdivision]);
 
     return (
         <>
