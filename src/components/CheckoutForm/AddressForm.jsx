@@ -39,21 +39,15 @@ const AddressForm = ({ checkoutToken, test }) => {
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
-  }, [checkoutToken.id]);
-
-  useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);
-  }, [shippingCountry]);
-
-  useEffect(() => {
     if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
-  }, [shippingSubdivision, checkoutToken.id, shippingCountry]);
+  }, [checkoutToken.id, shippingCountry, shippingSubdivision]);
 
   return (
     <>
       <Typography variant="h6" gutterBottom>Shipping address</Typography>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => console.log({ ...data, shippingCountry, shippingSubdivision, shippingOption }))}>
+        <form onSubmit={methods.handleSubmit((data) => test({ ...data, shippingCountry, shippingSubdivision, shippingOption }))}>
           <Grid container spacing={3}>
             <FormInput required name="firstName" label="First name" />
             <FormInput required name="lastName" label="Last name" />

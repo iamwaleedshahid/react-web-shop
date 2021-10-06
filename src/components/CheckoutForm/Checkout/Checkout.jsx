@@ -33,11 +33,11 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
       generateToken();
     }
-  }, [cart, activeStep, history]);
+  }, [cart.id, activeStep, history]);
 
   const test = (data) => {
     setShippingData(data);
-
+    console.log(shippingData)
     nextStep();
   };
 
@@ -69,7 +69,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   }
 
   const Form = () => (activeStep === 0
-    ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
+    ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} test={test} />
     : <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />);
 
   return (
