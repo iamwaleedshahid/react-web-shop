@@ -8,6 +8,8 @@ import Review from './Review';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+  console.log(shippingData)
+  console.log(checkoutToken)
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
@@ -23,14 +25,31 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
-        shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
-        fulfillment: { shipping_method: shippingData.shippingOption },
+        shipping: {
+          name: "Domestic",
+          street: shippingData.address1,
+          town_city: shippingData.city,
+          county_state: shippingData.shippingSubdivision,
+          postal_zip_code: shippingData.zip,
+          country: shippingData.shippingCountry,
+        },
+        billing: {
+          name: shippingData.firstName + shippingData.lastName,
+          street: shippingData.address1,
+          town_city: shippingData.city,
+          postal_zip_code: shippingData.zip,
+          county_state: shippingData.zip,
+          country: shippingData.shippingCountry,
+        },
+        fulfillment: {
+          shipping_method: shippingData.shippingOption
+        },
         payment: {
           gateway: 'stripe',
           stripe: {
             payment_method_id: paymentMethod.id,
-          },
-        },
+          }
+        }
       };
 
       onCaptureCheckout(checkoutToken.id, orderData);
