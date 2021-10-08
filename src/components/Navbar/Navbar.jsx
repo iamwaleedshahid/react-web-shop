@@ -32,10 +32,10 @@ const PrimarySearchAppBar = ({ totalItems }) => {
 
   return (
     <>
-      <AppBar position="fixed" className={classes.appBar} color="inherit">
+      <AppBar  position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
-            <img src={logo} alt="commerce.js" height="25px" className={classes.image} /> Commerce.js
+            <img src={logo} alt="react web shop" height="25px" className={classes.image} />React Web Shop
           </Typography>
           <div className={classes.grow} />
           {location.pathname === '/' && (

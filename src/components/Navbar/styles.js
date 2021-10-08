@@ -65,4 +65,8 @@ export default makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.06)',
+    borderRadius: '50%',
+  },
 }));

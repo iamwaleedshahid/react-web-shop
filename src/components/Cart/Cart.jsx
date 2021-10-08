@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
+import { Container,Typography, Button, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
@@ -11,9 +11,10 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => (
-    <Typography variant="subtitle1">You have no items in your shopping cart,
+      <Typography variant="subtitle1">You have no items in your shopping cart,
       <Link className={classes.link} to="/">start adding some</Link>!
     </Typography>
+
   );
 
   if (!cart.line_items) return 'Loading';
@@ -22,7 +23,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.id}>
+          <Grid item xs={12} sm={3} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
@@ -40,8 +41,8 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+      <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart:</Typography>
+      {!cart.line_items.length ? renderEmptyCart() : renderCart()}
     </Container>
   );
 };

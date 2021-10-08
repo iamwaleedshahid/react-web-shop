@@ -6,13 +6,20 @@ export default makeStyles(() => ({
   },
   cardContent: {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
-  cartActions: {
+  cardActions: {
+    display: 'flex',
     justifyContent: 'space-between',
   },
   buttons: {
     display: 'flex',
     alignItems: 'center',
+  },
+  icon: {
+    backgroundColor: 'rgba(0, 0, 0, 0.06)',
+    borderRadius: '50%',
   },
 }));
